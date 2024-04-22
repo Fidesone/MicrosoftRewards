@@ -37,9 +37,6 @@ public class GoogleSearch {
 			performSearch (searchText);
 			clickOnLogo();
 		}
-        //performSearch("hola");
-        //clickOnLogo();
-        //performSearch("Adios");
     }
 	
     private void performSearch(String searchText) {
