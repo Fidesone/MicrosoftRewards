@@ -1,6 +1,7 @@
 package maven.PruebaSelenium;
 
 import java.time.Duration;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 
@@ -30,9 +31,15 @@ public class GoogleSearch {
 	
 	@Test 
     public void testBingPage() {
-        performSearch("hola");
-        clickOnLogo();
-        performSearch("Adios");
+		int numberOfSearches = 10;
+		for (int i = 1; i<=numberOfSearches; i++) {
+			String searchText = generateRandomString();
+			performSearch (searchText);
+			clickOnLogo();
+		}
+        //performSearch("hola");
+        //clickOnLogo();
+        //performSearch("Adios");
     }
 	
     private void performSearch(String searchText) {
@@ -46,7 +53,19 @@ public class GoogleSearch {
         WebElement logo = wait.until(ExpectedConditions.elementToBeClickable(By.className("b_logoArea")));
         logo.click();
     }
-	
+    
+    private String generateRandomString() {
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        
+        //Generar una cadena aleatoria de longitud 5
+        for (int i = 0; i < 5; i++) {
+            int index = random.nextInt(alphabet.length());
+            sb.append(alphabet.charAt(index));
+        } 
+        return sb.toString();
+       }
 	@AfterEach
 	public void tearDown() {
 		driver.quit();
