@@ -15,7 +15,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BingSearch {
 	private WebDriver driver;
-	private WebDriverWait wait;	
+	private WebDriverWait wait;
+	
 	@BeforeEach
 	public void setUp() {
 		System.setProperty("webdriver.chrome.driver", "C:\\Dev\\Chromedriver\\chromedriver.exe");
@@ -26,14 +27,15 @@ public class BingSearch {
 	}
 	
 	@Test 
-    public void testBingPage() {
+    public void testBingPage() {		
+		//flujo del test
 		int numberOfSearches = 30;
 		String searchText = generateRandomString();
 		clickOnLogin();
 		for (int i = 1; i<=numberOfSearches; i++) {
 			 searchText = generateRandomString();
-			performSearch (searchText);
-			clickOnLogo();
+			 performSearch (searchText);
+			 clickOnLogo();
 		}
     }
 	
@@ -44,9 +46,9 @@ public class BingSearch {
     	     e.printStackTrace();
     	}
         WebElement searchbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("q")));
-        searchbox.clear();
-        searchbox.sendKeys(searchText);
-        searchbox.submit();
+        	searchbox.clear();
+        	searchbox.sendKeys(searchText);
+        	searchbox.submit();
         
     }  
     private void clickOnLogo() {
@@ -57,33 +59,34 @@ public class BingSearch {
     	}
     	
         WebElement logo = wait.until(ExpectedConditions.elementToBeClickable(By.className("b_logoArea")));
-        logo.click();
+        	logo.click();
     } 
     private void clickOnLogin() {
+    	// Flujo del login
         WebElement login = wait.until(ExpectedConditions.elementToBeClickable(By.id("id_s")));
-        login.click();
+        	login.click();
         WebElement sublogin = wait.until(ExpectedConditions.elementToBeClickable(By.className("id_text_signin")));
-        sublogin.click();
+        	sublogin.click();
         
         WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("i0116")));
-        String email = Credentials.getEmail();
-        emailInput.sendKeys(email); 
-        emailInput.submit();
+        	String email = Credentials.getEmail();
+        	emailInput.sendKeys(email); 
+        	emailInput.submit();
         
         WebElement passInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("i0118")));
-        String pass = Credentials.getPass();
-        passInput.sendKeys(pass); 
-        passInput.submit();
+        	String pass = Credentials.getPass();
+        	passInput.sendKeys(pass); 
+        	passInput.submit();
         
         
         WebElement declineButtom = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("declineButton")));
-        declineButtom.submit();
+        	declineButtom.submit();
         
         WebElement cookiesPopUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("bnp_container")));
         
         if (cookiesPopUp.isDisplayed() ){
         	WebElement acceptButton = cookiesPopUp.findElement(By.id("bnp_btn_accept"));
-            acceptButton.click();
+            	acceptButton.click();
         }
         
         
@@ -97,9 +100,10 @@ public class BingSearch {
         for (int i = 0; i < 7; i++) {
             int index = random.nextInt(alphabet.length());
             sb.append(alphabet.charAt(index));
-        } 
+        	} 
         return sb.toString();
        }
+    
 	@AfterEach
 	public void tearDown() {
 		driver.quit();
