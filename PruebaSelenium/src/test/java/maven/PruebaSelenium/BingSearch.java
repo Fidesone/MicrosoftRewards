@@ -41,7 +41,7 @@ public class BingSearch {
 	
     private void performSearch(String searchText) {
     	try {
-    		Thread.sleep(500); // Esperar 0,5 segundos antes de hacer clic en el logo
+    		Thread.sleep(2000); // Esperar 2 segundos antes de hacer clic en el logo
     	} catch (InterruptedException e) {
     	     e.printStackTrace();
     	}
@@ -53,7 +53,7 @@ public class BingSearch {
     }  
     private void clickOnLogo() {
     	try {
-    		Thread.sleep(500); // Esperar 0,5 segundos antes de hacer clic en el logo
+    		Thread.sleep(2000); // Esperar 2 segundos antes de hacer clic en el logo
     	} catch (InterruptedException e) {
     	     e.printStackTrace();
     	}
